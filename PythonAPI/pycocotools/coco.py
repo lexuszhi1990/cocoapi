@@ -64,7 +64,7 @@ elif PYTHON_VERSION == 3:
 
 
 def _isArrayLike(obj):
-    return hasattr(obj, '__iter__') and hasattr(obj, '__len__')
+    return hasattr(obj, '__iter__') and hasattr(obj, '__len__') and type(obj) is not str
 
 
 class COCO:
@@ -205,7 +205,8 @@ class COCO:
         """
         if _isArrayLike(ids):
             return [self.anns[id] for id in ids]
-        elif type(ids) == int:
+        # elif type(ids) == int:
+        else:
             return [self.anns[ids]]
 
     def loadCats(self, ids=[]):
@@ -216,7 +217,8 @@ class COCO:
         """
         if _isArrayLike(ids):
             return [self.cats[id] for id in ids]
-        elif type(ids) == int:
+        # elif type(ids) == int:
+        else:
             return [self.cats[ids]]
 
     def loadImgs(self, ids=[]):
@@ -227,7 +229,8 @@ class COCO:
         """
         if _isArrayLike(ids):
             return [self.imgs[id] for id in ids]
-        elif type(ids) == int:
+        # elif type(ids) == int:
+        else:
             return [self.imgs[ids]]
 
     def showAnns(self, anns):
